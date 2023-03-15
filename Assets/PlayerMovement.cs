@@ -4,23 +4,29 @@ public class PlayerMovement : MonoBehaviour
 {
   public Rigidbody rb;
     
-  public float runSpeed = 500f;
   public float strafeSpeed = 500f;
   public float jumpForce = 15f;
 
   protected bool strafeLeft = false;
   protected bool strafeRight = false;
+  protected bool strafeUp = false;
+  protected bool strafeDown= false;
   protected bool doJump = false;
 
   void Update()
   {
     strafeLeft = Input.GetKey("d");
     strafeRight = Input.GetKey("a");
+    strafeUp= Input.GetKey("w");
+    strafeDown= Input.GetKey("s");
     doJump = Input.GetKeyDown("space");
   }
 
   private void FixedUpdate()
   {
-    rb.AddForce(runSpeed * Time.deltaTime, 0, 0);
+    if (strafeLeft) rb.AddForce(strafeSpeed * Time.deltaTime, 0, 0, ForceMode.Impulse);
+    if (strafeRight) rb.AddForce(-strafeSpeed * Time.deltaTime, 0, 0, ForceMode.Impulse);
+    if (strafeUp) rb.AddForce(0, 0, strafeSpeed * Time.deltaTime, ForceMode.Impulse);
+    if (strafeDown) rb.AddForce(0, 0, -strafeSpeed * Time.deltaTime, ForceMode.Impulse);
   }
 }
