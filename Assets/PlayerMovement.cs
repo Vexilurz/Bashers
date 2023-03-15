@@ -4,21 +4,21 @@ public class PlayerMovement : MonoBehaviour
 {
   public Rigidbody rb;
     
-  public float strafeSpeed = 500f;
-  public float jumpForce = 15f;
+  public float strafeSpeed = 20f;
+  public float jumpForce = 5f;
 
   protected bool strafeLeft = false;
   protected bool strafeRight = false;
   protected bool strafeUp = false;
-  protected bool strafeDown= false;
+  protected bool strafeDown = false;
   protected bool doJump = false;
 
   void Update()
   {
     strafeLeft = Input.GetKey("d");
     strafeRight = Input.GetKey("a");
-    strafeUp= Input.GetKey("w");
-    strafeDown= Input.GetKey("s");
+    strafeUp = Input.GetKey("w");
+    strafeDown = Input.GetKey("s");
     if (Input.GetKeyDown("space")) doJump = true;
   }
 
